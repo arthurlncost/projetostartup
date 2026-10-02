@@ -1,0 +1,130 @@
+/* ============================================================
+   CALCULADORA DE ENERGIA SOLAR - estilos
+   Usa a mesma paleta de cores definida em Home.css (:root)
+   ============================================================ */
+
+.calculadora-container {
+  min-height: 80vh;
+  padding: 3rem 1.5rem;
+  background-color: var(--bege, #F6EFE2);
+  display: flex;
+  justify-content: center;
+}
+
+.calculadora-card {
+  max-width: 600px;
+  width: 100%;
+  background-color: var(--bege-claro, #FBF7EE);
+  border: 1px solid var(--dourado, #D9A441);
+  border-radius: 16px;
+  padding: 2.5rem;
+}
+
+.calculadora-card h2 {
+  margin-top: 0;
+  color: var(--carvao, #1B1712);
+}
+
+.calculadora-descricao {
+  color: var(--texto-escuro, #241F18);
+  margin-bottom: 2rem;
+}
+
+/* Campos de input */
+.input-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--laranja-escuro, #96420A);
+}
+
+.input-group input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--dourado, #D9A441);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  background-color: #fff;
+  color: var(--texto-escuro, #241F18);
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+  border-color: var(--laranja, #C1560C);
+}
+
+.input-dica {
+  font-size: 0.8rem;
+  color: #7a7266;
+  margin-top: 0.3rem;
+}
+
+/* Botão calcular */
+.calcular-btn {
+  width: 100%;
+  padding: 0.85rem;
+  margin-top: 0.5rem;
+  background-color: var(--laranja, #C1560C);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.calcular-btn:hover {
+  background-color: var(--laranja-escuro, #96420A);
+}
+
+.calcular-btn:active {
+  transform: scale(0.98);
+}
+
+/* Mensagem de erro */
+.calculadora-erro {
+  margin-top: 1rem;
+  color: #C1560C;
+  font-weight: bold;
+}
+
+/* Card de resultado */
+.resultado-card {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--bege, #F6EFE2);
+  border-left: 4px solid var(--dourado, #D9A441);
+  border-radius: 8px;
+}
+
+.resultado-card h3 {
+  margin-top: 0;
+  color: var(--carvao, #1B1712);
+}
+
+.resultado-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(27, 23, 18, 0.1);
+  color: var(--texto-escuro, #241F18);
+}
+
+.resultado-item.destaque strong {
+  color: var(--laranja, #C1560C);
+  font-size: 1.1rem;
+}
+
+.resultado-aviso {
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  color: #7a7266;
+  line-height: 1.4;
+}

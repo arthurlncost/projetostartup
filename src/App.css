@@ -238,20 +238,21 @@
     width: 65px !important; /* Reduz a imagem no telemóvel */
   }
 }
-
-/* Destaque para a reclamação do mascote */
+/*
+ Destaque para a reclamação do mascote 
 .destaque-fala {
-  color: #C1560C; /* O mesmo laranja do botão de login/destaques */
+  color: #C1560C; 
   font-size: 1.1rem;
   font-weight: 800;
   display: inline-block;
   margin-right: 4px;
-  /* Um leve efeito de tremor para combinar com o esforço */
+
   animation: balancoSuave 0.5s ease-in-out infinite alternate;
 }
 
-/* Animação opcional de tremor leve no texto */
+ Animação opcional de tremor leve no texto 
 @keyframes balancoSuave {
   from { transform: rotate(-1deg); }
   to { transform: rotate(1deg); }
 }
+*/

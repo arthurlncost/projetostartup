@@ -1,3 +1,46 @@
+.navbar-container {
+  background-color: #121212;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(217, 164, 65, 0.2);
+}
+
+.navbar-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- Brand / Logo --- */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.navbar-logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.navbar-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #FBF7EE;
+  letter-spacing: 0.5px;
+}
+
+.navbar-title .highlight {
+  color: #D9A441; /* Destaque tom solar */
+}
+
 /* --- Estilos do Dropdown --- */
 .dropdown-container-split {
   display: flex;

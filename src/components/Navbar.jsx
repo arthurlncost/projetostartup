@@ -82,14 +82,13 @@ export default function Navbar() {
               </span>
               <ul className={`dropdown-menu ${dropdownAbertoPlacas ? 'show' : ''}`}>
                 <li><span style={{ fontSize: '0.8rem', color: '#D9A441', padding: '0.2rem 1rem', display: 'block' }}>Categorias:</span></li>
-                <li><NavLink to="/partners/venda" className="nav-item" onClick={fecharMenu}>Comprar / Venda</NavLink></li>
-                <li><NavLink to="/partners/manutencao" className="nav-item" onClick={fecharMenu}>Manutenção</NavLink></li>
-                <li><NavLink to="/partners/descarte" className="nav-item" onClick={fecharMenu}>Descarte & Reciclagem</NavLink></li>
+                <li><NavLink to="/servicetypes/venda" className="nav-item" onClick={fecharMenu}>Comprar</NavLink></li>
+                <li><NavLink to="/servicetypes/manutencao" className="nav-item" onClick={fecharMenu}>Manutenção</NavLink></li>
+                <li><NavLink to="/servicetypes/descarte" className="nav-item" onClick={fecharMenu}>Descarte & Reciclagem</NavLink></li>
               </ul>
             </div>
           </div>
 
-          <NavLink to="/servicos" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'} onClick={fecharMenu}>Serviços & CEP</NavLink>
           <NavLink to="/faq" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'} onClick={fecharMenu}>FAQ</NavLink>
           <NavLink to="/login" className="nav-btn-login" onClick={fecharMenu}>Entrar</NavLink>
         </nav>

@@ -46,7 +46,7 @@ export default function AssistenteMascote() {
       break;
     case '/faq':
       mensagem = "Tem alguma dúvida? Manda para mim.";
-      tipoMascote = "pensador";
+      tipoMascote = "inventor";
       break;
     case '/login':
       mensagem = "Faça login para salvar o seu histórico de simulações e ter acesso a funções mais práticas.";

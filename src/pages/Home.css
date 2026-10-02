@@ -1,0 +1,173 @@
+:root {
+  --carvao: #1B1712;
+  --bege: #F6EFE2;
+  --bege-claro: #FBF7EE;
+  --texto-escuro: #241F18;
+  --dourado: #D9A441;
+  --laranja: #C1560C;
+  --laranja-escuro: #96420A;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+}
+
+.hero-title {
+  color: var(--laranja-escuro);
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  font-weight: 800;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: var(--texto-escuro);
+  max-width: 650px;
+  margin: 0.8rem auto 0;
+}
+
+/* Secções Gerais */
+.info-section {
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.info-section h2,
+.ods-section h2 {
+  color: var(--carvao);
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--dourado);
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+/* Passos - Como Funciona */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Antes: fundo #1E1E1E (quase preto) com texto escuro por cima -
+   ilegível. Agora usa o mesmo padrão claro das outras páginas:
+   card bege-claro + borda dourada + texto escuro (contraste OK). */
+.step-card {
+  background-color: var(--bege-claro);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(217, 164, 65, 0.4);
+  position: relative;
+  text-align: center;
+}
+
+.step-card h3 {
+  color: var(--carvao);
+  margin-bottom: 0.5rem;
+}
+
+.step-card p {
+  color: var(--texto-escuro);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.step-number {
+  background-color: var(--laranja);
+  color: #FFF;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin: 0 auto 1rem;
+}
+
+/* Vantagens Grid */
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Antes: background-color: var(--texto-escuro) (marrom bem escuro)
+   sem cor de texto definida no parágrafo -> texto quase invisível.
+   Agora segue o mesmo card claro usado no resto do site. */
+.advantage-card {
+  background-color: var(--bege-claro);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(217, 164, 65, 0.4);
+  text-align: center;
+}
+
+.adv-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.advantage-card h4 {
+  color: var(--laranja-escuro);
+  margin-bottom: 0.5rem;
+}
+
+.advantage-card p {
+  color: var(--texto-escuro);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ODS Section */
+/* Antes: background-color: #1E1E1E com h2 na cor var(--carvao)
+   (quase preto em cima de quase preto = texto some).
+   Agora usa fundo bege-claro, igual ao resto do site. */
+.ods-section {
+  text-align: center;
+  background-color: var(--bege-claro);
+  padding: 2.5rem 1.5rem;
+  border-radius: 12px;
+  margin-top: 3rem;
+  border: 1px solid rgba(217, 164, 65, 0.4);
+}
+
+.ods-section > p {
+  color: var(--texto-escuro);
+}
+
+.ods-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.ods-badge {
+  background-color: var(--bege);
+  border-left: 4px solid var(--laranja);
+  padding: 1rem;
+  border-radius: 6px;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ods-badge strong {
+  color: var(--laranja-escuro);
+  font-size: 1.1rem;
+}
+
+.ods-badge span {
+  font-size: 0.85rem;
+  color: var(--texto-escuro);
+  margin-top: 0.2rem;
+  text-align: left;
+}

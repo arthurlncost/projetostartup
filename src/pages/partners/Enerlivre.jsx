@@ -1,6 +1,6 @@
 export default function Enerlivre() {
   return (
-    <div style={{ padding: '4rem 2rem', color: '#FBF7EE' }}>
+    <div style={{ padding: '4rem 2rem', color: '#1B1712' }}>
       <h1>Parceiro: Enerlvire</h1>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo minus quaerat soluta? Hic labore magnam similique corporis, atque, consectetur libero sint accusamus ab natus provident consequuntur maiores eos voluptatibus repudiandae.</p>
     </div>

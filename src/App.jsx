@@ -11,6 +11,7 @@ import Servicos from './pages/Servicos';
 import Placas from './pages/Placas';
 import Faq from './pages/Faq';
 import Login from './pages/Login';
+import Cadastro from './pages/Cadastro';
 import NotFound from './pages/NotFound';
 import EdpSolucoes from './pages/partners/edpSolucoes';
 import Enerlivre from './pages/partners/Enerlivre';
@@ -38,16 +39,20 @@ export default function App() {
           <Route path="/placas" element={<Placas />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/login" element={<Login />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/registo" element={<Cadastro />} />
+
           <Route path="/partners/edpsolucoes" element={<EdpSolucoes />} />
           <Route path="/partners/enerlivre" element={<Enerlivre />} />
           <Route path="/partners/evosolar" element={<Evosolar />} />
           <Route path="/partners/sunmobi" element={<Sunmobi />} />
           <Route path="/partners/sunnyhub" element={<Sunnyhub />} />
+
           <Route path="/placas/venda" element={<Vendas />} />
           <Route path="/placas/manutencao" element={<Manutencao />} />
           <Route path="/placas/descarte" element={<Descarte />} />
           <Route path="/cadastro-empresa" element={<CadastroEmpresa />} />
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 

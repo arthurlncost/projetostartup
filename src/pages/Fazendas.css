@@ -1,0 +1,110 @@
+/* ============================================================
+   FAZENDAS SOLARES - estilos
+   Usa a mesma paleta de cores definida em Home.css (:root)
+   ============================================================ */
+
+.fazendas-container {
+  min-height: 80vh;
+  padding: 3rem 1.5rem;
+  background-color: var(--bege, #F6EFE2);
+}
+
+.fazendas-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+}
+
+.fazendas-header h2 {
+  color: var(--carvao, #1B1712);
+  font-size: 1.8rem;
+  border-bottom: 2px solid var(--dourado, #D9A441);
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.fazendas-header p {
+  color: var(--texto-escuro, #241F18);
+  margin-top: 1rem;
+}
+
+/* Grid responsivo: cria colunas automaticamente conforme
+   o espaço disponível, sempre com no mínimo 260px cada */
+.fazendas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.fazenda-card {
+  background-color: var(--bege-claro, #FBF7EE);
+  border: 1px solid rgba(217, 164, 65, 0.4);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fazenda-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(27, 23, 18, 0.1);
+}
+
+.fazenda-imagem {
+  background-color: var(--carvao, #1B1712);
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fazenda-imagem img {
+  max-height: 60px;
+  max-width: 80%;
+  object-fit: contain;
+}
+
+.fazenda-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.fazenda-info h3 {
+  margin: 0 0 0.3rem;
+  color: var(--carvao, #1B1712);
+}
+
+.fazenda-local {
+  font-size: 0.8rem;
+  color: var(--laranja-escuro, #96420A);
+  margin-bottom: 0.75rem;
+}
+
+.fazenda-info p {
+  color: var(--texto-escuro, #241F18);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  flex: 1;
+  margin-bottom: 1.25rem;
+}
+
+.fazenda-btn {
+  text-decoration: none;
+  text-align: center;
+  background-color: var(--laranja, #C1560C);
+  color: #fff;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.fazenda-btn:hover {
+  background-color: var(--laranja-escuro, #96420A);
+}

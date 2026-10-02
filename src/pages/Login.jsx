@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { supabase } from "../services/supabase";
+=======
+import { Link } from 'react-router-dom';
+>>>>>>> origin/master
 import './Login.css';
 
 export default function Login() {
@@ -10,6 +14,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("A tentar autenticar o utilizador:", email);
+<<<<<<< HEAD
     const { data, error } = await supabase.auth.signInWithPassword({//gnifica que estamos usando o sistema de autenticação do Supabase. // “Supabase, tente fazer login usando e-mail e senha.”
       email: email,
       password: password
@@ -35,6 +40,10 @@ manda email + password
    error      data
      ↓          ↓
   deu ruim    login OK*/
+=======
+    // Aqui entrará a lógica de ligação ao Supabase no futuro
+  };
+>>>>>>> origin/master
 
   return (
     <div className="login-page">
@@ -69,6 +78,21 @@ manda email + password
             )}
 
           <button type="submit" className="login-btn">Entrar</button>
+
+          {/* Nova secção de links adicionada */}
+          <div className="login-footer">
+            <p>
+              Não tem uma conta?{' '}
+              <Link to="/registo" className="login-link">
+                Registe-se aqui
+              </Link>
+            </p>
+            <p>
+              <Link to="/recuperar-senha" className="login-link-secondary">
+                Esqueceu a palavra-passe?
+              </Link>
+            </p>
+          </div>
         </form>
       </div>
     </div>
