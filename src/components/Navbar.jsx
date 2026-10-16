@@ -1,11 +1,20 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
 
 export default function Navbar() {
   const [menuAberto, setMenuAberto] = useState(false);
   const [dropdownAberto, setDropdownAberto] = useState(false); // Estado para Fazendas
   const [dropdownAbertoPlacas, setDropdownAbertoPlacas] = useState(false); // Estado para Placas
+  const { user, sair } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSair = async () => {
+  await sair();          // pede ao Supabase pra encerrar a sessão
+  fecharMenu();          // fecha o menu mobile
+  navigate('/');         // manda pra Home
+  };
 
   const fecharMenu = () => {
     setMenuAberto(false);
@@ -90,7 +99,14 @@ export default function Navbar() {
           </div>
 
           <NavLink to="/faq" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'} onClick={fecharMenu}>FAQ</NavLink>
+          {user ? (
+          <>
+            <NavLink to="/painel" className="nav-item" onClick={fecharMenu}>Meu painel</NavLink>
+            <button className="nav-btn-login" onClick={handleSair}>Sair</button>
+          </>
+            ) : (
           <NavLink to="/login" className="nav-btn-login" onClick={fecharMenu}>Entrar</NavLink>
+          )}
         </nav>
       </div>
     </header>

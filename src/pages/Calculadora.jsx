@@ -9,7 +9,10 @@
 // useState é um "hook" do React. Ele serve para guardar valores
 // que podem mudar (ex: o que o usuário digitou) e fazer a tela
 // atualizar sozinha sempre que esse valor muda.
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "../services/supabase";
+import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 import "./Calculadora.css";
 
 export default function Calculadora() {
@@ -36,6 +39,10 @@ export default function Calculadora() {
   // Guarda mensagem de erro, se o usuário digitar algo inválido
   const [erro, setErro] = useState("");
 
+  const { user } = useAuth();
+  const [mensagemSalvo, setMensagemSalvo] = useState("");
+  const [historico, setHistorico] = useState([]);
+
   // ----------------------------------------------------------
   // FUNÇÃO QUE FAZ O CÁLCULO
   // ----------------------------------------------------------
@@ -50,6 +57,8 @@ export default function Calculadora() {
       setResultado(null);
       return; // para a função aqui, não continua o cálculo
     }
+
+    
 
     setErro(""); // limpa erro anterior, se houver
 
@@ -84,7 +93,41 @@ export default function Calculadora() {
       economiaAnual,
     });
   }
+  async function salvarSimulacao() {
+    const { error } = await supabase.from("simulacoes").insert({
+    conta_luz: parseFloat(contaLuz),
+    tarifa: parseFloat(tarifa),
+    consumo_kwh: Number(resultado.consumoMensalKwh),
+    paineis: resultado.painéisNecessarios,
+    economia_mensal: Number(resultado.economiaMensal),
+    economia_anual: Number(resultado.economiaAnual),
+  });
 
+  if (error) {
+    setMensagemSalvo("Não foi possível salvar: " + error.message);
+    return;
+  }
+  setMensagemSalvo("Simulação salva!");
+  carregarHistorico();
+  }   
+
+  async function carregarHistorico() {
+  const { data, error } = await supabase
+    .from("simulacoes")
+    .select("*")
+    .order("criado_em", { ascending: false })
+    .limit(5);
+
+  if (!error) setHistorico(data);
+}
+
+  useEffect(() => {
+    if (user) {
+      carregarHistorico();
+    } else {
+     setHistorico([]);
+    }
+  }, [user]);
   // ----------------------------------------------------------
   // O QUE APARECE NA TELA (JSX)
   // ----------------------------------------------------------
@@ -160,12 +203,38 @@ export default function Calculadora() {
               <span>Economia anual estimada:</span>
               <strong>R$ {resultado.economiaAnual}</strong>
             </div>
-
+            
+             {user ? (
+              <button className="calcular-btn" onClick={salvarSimulacao}>
+                Salvar simulação
+              </button>
+            ) : (
+             <Link to="/login" className="calcular-btn calcular-btn-link">
+              Entre para salvar esta simulação
+             </Link>
+            )}
+          {mensagemSalvo && <p>{mensagemSalvo}</p>}
             <p className="resultado-aviso">
               * Valores aproximados para fins ilustrativos. A economia real
               depende da irradiação solar da sua região, do tipo de sistema
               contratado e das condições do imóvel.
             </p>
+          </div>
+        )}
+        {user && historico.length > 0 && (
+          <div className="resultado-card">
+            <h3>Suas simulações anteriores</h3>
+
+            {historico.map((sim) => (
+              <div className="resultado-item" key={sim.id}>
+                <span>
+                  {new Date(sim.criado_em).toLocaleDateString("pt-BR")} · conta de R$ {sim.conta_luz}
+                </span>
+                <strong>
+                  {sim.paineis} painéis · R$ {Number(sim.economia_mensal).toFixed(2)}/mês
+                </strong>
+              </div>
+            ))}
           </div>
         )}
       </div>
