@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import AssistenteMascote from './components/AssistenteMascote';
+import { AuthProvider } from './context/AuthContext';
+
+
 
 // Importação das páginas
 import Home from './pages/Home';
@@ -22,45 +25,53 @@ import Descarte from './pages/servicetypes/Descarte';
 import Vendas from './pages/servicetypes/Vendas';
 import Manutencao from './pages/servicetypes/Manutencao';
 import CadastroEmpresa from './pages/CadastroEmpresa';
+import RotaProtegida from './components/RotaProtegida';
+import Painel from './pages/Painel';
+
+
+
 
 import './App.css'; 
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      
-      <main style={{ minHeight: '80vh' }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/calculadora" element={<Calculadora />} />
-          <Route path="/fazendas" element={<Fazendas />} />
-          <Route path="/servicos" element={<Servicos />} />
-          <Route path="/placas" element={<Placas />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registo" element={<Cadastro />} />
+    <AuthProvider>
+      <BrowserRouter>
+        <Navbar />
 
-          <Route path="/partners/edpsolucoes" element={<EdpSolucoes />} />
-          <Route path="/partners/enerlivre" element={<Enerlivre />} />
-          <Route path="/partners/evosolar" element={<Evosolar />} />
-          <Route path="/partners/sunmobi" element={<Sunmobi />} />
-          <Route path="/partners/sunnyhub" element={<Sunnyhub />} />
+        <main style={{ minHeight: '80vh' }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/calculadora" element={<Calculadora />} />
+            <Route path="/fazendas" element={<Fazendas />} />
+            <Route path="/servicos" element={<Servicos />} />
+            <Route path="/placas" element={<Placas />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/registo" element={<Cadastro />} />
 
-          <Route path="/placas/venda" element={<Vendas />} />
-          <Route path="/placas/manutencao" element={<Manutencao />} />
-          <Route path="/placas/descarte" element={<Descarte />} />
-          <Route path="/cadastro-empresa" element={<CadastroEmpresa />} />
+            <Route path="/partners/edpsolucoes" element={<EdpSolucoes />} />
+            <Route path="/partners/enerlivre" element={<Enerlivre />} />
+            <Route path="/partners/evosolar" element={<Evosolar />} />
+            <Route path="/partners/sunmobi" element={<Sunmobi />} />
+            <Route path="/partners/sunnyhub" element={<Sunnyhub />} />
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
+            <Route path="/placas/venda" element={<Vendas />} />
+            <Route path="/placas/manutencao" element={<Manutencao />} />
+            <Route path="/placas/descarte" element={<Descarte />} />
+            <Route path="/cadastro-empresa" element={<CadastroEmpresa />} />
 
-      <Footer />
+            <Route path="/painel" element={<RotaProtegida><Painel /></RotaProtegida>} />
 
-      {/* O mascote inteligente adicionado aqui*/}
-      <AssistenteMascote /> 
-      
-    </BrowserRouter>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+
+        <Footer />
+
+        {/* O mascote inteligente adicionado aqui*/}
+        <AssistenteMascote />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
