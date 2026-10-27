@@ -35,7 +35,7 @@ export default function Cadastro() {
     email: formData.email,
     password: formData.senha,
     options: {
-      data: { nome: formData.nome, cep: formData.cep }
+      data: { nome: formData.nome, cep: formData.cep,  tipo: 'cliente' }
     }
   });
 

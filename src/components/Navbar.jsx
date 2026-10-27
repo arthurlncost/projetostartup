@@ -7,7 +7,7 @@ export default function Navbar() {
   const [menuAberto, setMenuAberto] = useState(false);
   const [dropdownAberto, setDropdownAberto] = useState(false); // Estado para Fazendas
   const [dropdownAbertoPlacas, setDropdownAbertoPlacas] = useState(false); // Estado para Placas
-  const { user, sair } = useAuth();
+  const { user, tipo, sair } = useAuth();
   const navigate = useNavigate();
 
   const handleSair = async () => {
@@ -101,10 +101,16 @@ export default function Navbar() {
           <NavLink to="/faq" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'} onClick={fecharMenu}>FAQ</NavLink>
           {user ? (
           <>
-            <NavLink to="/painel" className="nav-item" onClick={fecharMenu}>Meu painel</NavLink>
+            <NavLink
+              to={tipo === 'vendedor' ? '/vendedor' : '/painel'}
+              className="nav-item"
+              onClick={fecharMenu}
+            >
+              {tipo === 'vendedor' ? 'Painel do vendedor' : 'Meu painel'}
+            </NavLink>
             <button className="nav-btn-login" onClick={handleSair}>Sair</button>
           </>
-            ) : (
+          ) : (
           <NavLink to="/login" className="nav-btn-login" onClick={fecharMenu}>Entrar</NavLink>
           )}
         </nav>

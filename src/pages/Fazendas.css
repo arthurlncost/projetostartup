@@ -1,110 +1,336 @@
 /* ============================================================
-   FAZENDAS SOLARES - estilos
-   Usa a mesma paleta de cores definida em Home.css (:root)
+   FAZENDAS SOLARES: blog em formato de post + marketplace no final
+   Usa as variáveis de cor do index.css
    ============================================================ */
+
+html {
+  scroll-padding-top: 100px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
 
 .fazendas-container {
   min-height: 80vh;
-  padding: 3rem 1.5rem;
   background-color: var(--bege, #F6EFE2);
-}
-
-.fazendas-header {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 2.5rem;
-}
-
-.fazendas-header h2 {
-  color: var(--carvao, #1B1712);
-  font-size: 1.8rem;
-  border-bottom: 2px solid var(--dourado, #D9A441);
-  display: inline-block;
-  padding-bottom: 0.5rem;
-}
-
-.fazendas-header p {
   color: var(--texto-escuro, #241F18);
-  margin-top: 1rem;
 }
 
-/* Grid responsivo: cria colunas automaticamente conforme
-   o espaço disponível, sempre com no mínimo 260px cada */
-.fazendas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  max-width: 1100px;
+/* ---------- POST: CABEÇALHO ---------- */
+
+.post {
+  max-width: 960px;
   margin: 0 auto;
+  padding: 56px 24px 0;
 }
 
-.fazenda-card {
-  background-color: var(--bege-claro, #FBF7EE);
-  border: 1px solid rgba(217, 164, 65, 0.4);
+.post-cabecalho {
+  max-width: 720px;
+  margin: 0 auto 32px;
+  text-align: center;
+}
+
+.post-etiqueta {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--dourado, #D9A441);
+  color: var(--carvao, #1B1712);
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.post-cabecalho h1 {
+  margin: 16px 0 12px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+}
+
+.post-subtitulo {
+  margin: 0 0 14px;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #5b5044;
+}
+
+.post-info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 22px;
+  font-size: 0.9rem;
+  color: #5b5044;
+}
+
+.post-botao {
+  display: inline-block;
+  padding: 12px 26px;
+  background: var(--laranja, #C1560C);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.post-botao:hover {
+  background: var(--laranja-escuro, #96420A);
+  color: #fff;
+}
+
+.post-botao:focus-visible {
+  outline: 3px solid var(--laranja, #C1560C);
+  outline-offset: 2px;
+}
+
+/* ---------- POST: IMAGENS ---------- */
+
+.post-capa {
+  margin: 0 0 48px;
+}
+
+.post-figura {
+  margin: 0 0 28px;
+}
+
+.post-capa img,
+.post-figura img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
   border-radius: 14px;
-  overflow: hidden;
+}
+
+.post-capa img {
+  aspect-ratio: 16 / 8;
+}
+
+.post-figura img {
+  aspect-ratio: 16 / 9;
+}
+
+.post-capa figcaption,
+.post-figura figcaption {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #5b5044;
+  text-align: center;
+}
+
+/* ---------- POST: TEXTO ---------- */
+
+.blog-secao {
+  margin: 0 0 64px;
+  scroll-margin-top: 100px;
+}
+
+.post-texto {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.85;
+}
+
+.post-texto h2 {
+  margin: 0 0 16px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.9rem;
+  line-height: 1.25;
+}
+
+.post-texto h2::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 4px;
+  margin-top: 12px;
+  background: var(--dourado, #D9A441);
+  border-radius: 4px;
+}
+
+.post-texto p {
+  margin: 0 0 18px;
+}
+
+.post-texto ul {
+  margin: 0 0 18px;
+  padding-left: 1.25rem;
+}
+
+.post-texto li {
+  margin-bottom: 6px;
+}
+
+/* primeiro parágrafo do guia em tamanho maior, como abertura */
+.blog-secao:first-of-type .post-texto p:first-of-type {
+  font-size: 1.3rem;
+  line-height: 1.7;
+}
+
+.blog-curiosidade {
+  margin: 24px 0 0;
+  padding: 18px 22px;
+  background: #FFF0C9;
+  border-left: 4px solid var(--dourado, #D9A441);
+  border-radius: 8px;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.blog-fontes {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.blog-fontes h3 {
+  margin: 0 0 8px;
+}
+
+/* ---------- MARKETPLACE ---------- */
+
+.mkt-secao {
+  max-width: 1100px;
+  margin: 56px auto 0;
+  padding: 40px 24px 64px;
+  border-top: 1px solid #E5D6B5;
+  scroll-margin-top: 100px;
+}
+
+.mkt-secao > h2 {
+  margin: 0 0 6px;
+  font-size: 1.8rem;
+}
+
+.mkt-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.mkt-card {
   display: flex;
   flex-direction: column;
+  padding: 22px;
+  background: var(--bege-claro, #FBF7EE);
+  border: 1px solid #E5D6B5;
+  border-top: 4px solid var(--dourado, #D9A441);
+  border-radius: 12px;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.fazenda-card:hover {
+.mkt-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(27, 23, 18, 0.1);
 }
 
-.fazenda-imagem {
-  background-color: var(--carvao, #1B1712);
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.mkt-card h3 {
+  margin: 10px 0 4px;
+  font-size: 1.2rem;
 }
 
-.fazenda-imagem img {
-  max-height: 60px;
-  max-width: 80%;
-  object-fit: contain;
-}
-
-.fazenda-info {
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.fazenda-info h3 {
-  margin: 0 0 0.3rem;
-  color: var(--carvao, #1B1712);
-}
-
-.fazenda-local {
+.mkt-etiqueta {
+  align-self: flex-start;
+  padding: 3px 10px;
+  background: #E2EFD6;
+  color: #2F5A24;
+  border-radius: 12px;
   font-size: 0.8rem;
-  color: var(--laranja-escuro, #96420A);
-  margin-bottom: 0.75rem;
+  font-weight: 700;
 }
 
-.fazenda-info p {
-  color: var(--texto-escuro, #241F18);
-  font-size: 0.9rem;
+.mkt-local,
+.mkt-empresa {
+  margin: 0 0 8px;
+  font-size: 0.92rem;
+  color: #5b5044;
+}
+
+.mkt-descricao {
+  margin: 0 0 12px;
   line-height: 1.5;
-  flex: 1;
-  margin-bottom: 1.25rem;
 }
 
-.fazenda-btn {
-  text-decoration: none;
-  text-align: center;
-  background-color: var(--laranja, #C1560C);
+.mkt-preco {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--laranja, #C1560C);
+}
+
+.mkt-btn {
+  display: block;
+  margin-top: auto;
+  padding: 11px;
+  background: var(--laranja, #C1560C);
   color: #fff;
-  padding: 0.65rem 1rem;
   border-radius: 8px;
-  font-weight: bold;
-  font-size: 0.9rem;
-  transition: background-color 0.2s;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
 }
 
-.fazenda-btn:hover {
-  background-color: var(--laranja-escuro, #96420A);
+.mkt-btn:hover {
+  background: var(--laranja-escuro, #96420A);
+  color: #fff;
+}
+
+.mkt-btn:focus-visible {
+  outline: 3px solid var(--laranja, #C1560C);
+  outline-offset: 2px;
+}
+
+.mkt-vazio {
+  margin-top: 20px;
+  padding: 40px 24px;
+  background: var(--bege-claro, #FBF7EE);
+  border: 1px dashed #C9B88F;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.mkt-vazio h3 {
+  margin: 0 0 8px;
+}
+
+.mkt-vazio p {
+  margin: 0;
+}
+
+/* ---------- CELULAR ---------- */
+
+@media (max-width: 640px) {
+  .post {
+    padding-top: 32px;
+  }
+
+  .post-texto {
+    font-size: 1.05rem;
+  }
+
+  .post-texto h2 {
+    font-size: 1.5rem;
+  }
+
+  .mkt-secao {
+    padding: 32px 16px 48px;
+  }
+
+  .mkt-grade {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mkt-card {
+    transition: none;
+  }
 }

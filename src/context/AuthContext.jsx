@@ -6,6 +6,7 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [carregando, setCarregando] = useState(true);
+  const tipo = user?.user_metadata?.tipo ?? (user ? 'cliente' : null);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -24,8 +25,10 @@ export function AuthProvider({ children }) {
     supabase.auth.signInWithPassword({ email, password });
   const sair = () => supabase.auth.signOut();
 
+  
+
   return (
-    <AuthContext.Provider value={{ user, carregando, entrar, sair }}>
+    <AuthContext.Provider value={{ user, tipo, carregando, entrar, sair }}>
       {children}
     </AuthContext.Provider>
   );

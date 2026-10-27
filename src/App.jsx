@@ -4,8 +4,6 @@ import Footer from './components/Footer';
 import AssistenteMascote from './components/AssistenteMascote';
 import { AuthProvider } from './context/AuthContext';
 
-
-
 // Importação das páginas
 import Home from './pages/Home';
 import Calculadora from './pages/Calculadora';
@@ -27,11 +25,9 @@ import Manutencao from './pages/servicetypes/Manutencao';
 import CadastroEmpresa from './pages/CadastroEmpresa';
 import RotaProtegida from './components/RotaProtegida';
 import Painel from './pages/Painel';
+import PainelVendedor from './pages/PainelVendedor';
 
-
-
-
-import './App.css'; 
+import './App.css';
 
 export default function App() {
   return (
@@ -61,7 +57,8 @@ export default function App() {
             <Route path="/placas/descarte" element={<Descarte />} />
             <Route path="/cadastro-empresa" element={<CadastroEmpresa />} />
 
-            <Route path="/painel" element={<RotaProtegida><Painel /></RotaProtegida>} />
+            <Route path="/painel" element={<RotaProtegida tipo="cliente"><Painel /></RotaProtegida>} />
+            <Route path="/vendedor" element={<RotaProtegida tipo="vendedor"><PainelVendedor /></RotaProtegida>} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

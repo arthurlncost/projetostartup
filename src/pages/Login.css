@@ -115,3 +115,25 @@
 .login-link-secondary:hover {
   text-decoration: underline;
 }
+
+.login-abas {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+}
+
+.login-aba {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 8px;
+  background: #EADFC8;
+  color: #241F18;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-aba.ativa {
+  background: var(--laranja, #C1560C);
+  color: #fff;
+}
