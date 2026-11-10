@@ -1,0 +1,303 @@
+// ============================================================
+// CALCULADORA DE ENERGIA SOLAR - Eletricitrus
+// ============================================================
+// Este arquivo é um "componente" React. Pense nele como uma
+// função que devolve um pedaço de HTML (na verdade é JSX,
+// que é HTML "turbinado" dentro do JavaScript).
+// ============================================================
+
+// useState é um "hook" do React. Ele serve para guardar valores
+// que podem mudar (ex: o que o usuário digitou) e fazer a tela
+// atualizar sozinha sempre que esse valor muda.
+import { useState, useEffect } from "react";
+import { supabase } from "../services/supabase";
+import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
+import "./Calculadora.css";
+
+export default function Calculadora() {
+  // ----------------------------------------------------------
+  // ESTADOS (as "variáveis vivas" da página)
+  // ----------------------------------------------------------
+  // Cada linha abaixo segue o mesmo padrão:
+  //   const [valorAtual, funcaoParaMudarOValor] = useState(valorInicial)
+  //
+  // Sempre que você chama a "funcaoParaMudarOValor", o React
+  // redesenha a tela automaticamente com o novo valor.
+
+  // O que o usuário digita no campo "conta de luz"
+  const [contaLuz, setContaLuz] = useState("");
+  const [campoAtivo, setCampoAtivo] = useState("conta");
+
+  // Tarifa de energia em R$/kWh (já vem com um valor padrão,
+  // mas o usuário pode alterar)
+  const [tarifa, setTarifa] = useState("0.75");
+
+  // Vai guardar o resultado do cálculo (começa como null =
+  // "ainda não calculei nada")
+  const [resultado, setResultado] = useState(null);
+
+  // Guarda mensagem de erro, se o usuário digitar algo inválido
+  const [erro, setErro] = useState("");
+
+  const { user } = useAuth();
+  const [mensagemSalvo, setMensagemSalvo] = useState("");
+  const [historico, setHistorico] = useState([]);
+
+  function inserirTecla(tecla) {
+    const valorAtual = campoAtivo === "conta" ? contaLuz : tarifa;
+    const setValor = campoAtivo === "conta" ? setContaLuz : setTarifa;
+
+    if (tecla === "limpar") {
+      setValor("");
+      return;
+    }
+
+    if (tecla === "apagar") {
+      setValor(valorAtual.slice(0, -1));
+      return;
+    }
+
+    if (tecla === "," && valorAtual.includes(".")) {
+      return;
+    }
+
+    if (tecla === "," && valorAtual === "") {
+      setValor("0.");
+      return;
+    }
+
+    setValor(`${valorAtual}${tecla}`);
+  }
+
+  // ----------------------------------------------------------
+  // FUNÇÃO QUE FAZ O CÁLCULO
+  // ----------------------------------------------------------
+  // Isso roda quando o usuário clica no botão "Calcular".
+  function calcularEconomia() {
+    const valorConta = parseFloat(contaLuz);
+    const valorTarifa = parseFloat(tarifa);
+
+    // Validação simples: os campos precisam ser números válidos e maiores que zero
+    if (!valorConta || valorConta <= 0 || !valorTarifa || valorTarifa <= 0) {
+      setErro("Preencha os campos com valores válidos maiores que zero.");
+      setResultado(null);
+      return; // para a função aqui, não continua o cálculo
+    }
+
+    
+
+    setErro(""); // limpa erro anterior, se houver
+
+    // 1) Quantos kWh a pessoa consome por mês
+    //    (valor da conta dividido pelo preço do kWh)
+    const consumoMensalKwh = valorConta / valorTarifa;
+
+    // 2) Estimativa de geração de 1 painel solar (450W) no Brasil:
+    //    em média, gera cerca de 65 kWh por mês (varia por região/sol)
+    const geracaoPorPainelKwh = 65;
+
+    // 3) Quantos painéis seriam necessários para cobrir o consumo
+    const painéisNecessarios = Math.ceil(consumoMensalKwh / geracaoPorPainelKwh);
+
+    // 4) Área aproximada no telhado (cada painel ocupa ~2,5 m²)
+    const areaNecessaria = (painéisNecessarios * 2.5).toFixed(1);
+
+    // 5) Economia estimada: modelo de energia solar por assinatura
+    //    costuma gerar entre 15% e 20% de desconto na conta.
+    //    Vamos usar 18% como estimativa média.
+    const percentualEconomia = 0.18;
+    const economiaMensal = (valorConta * percentualEconomia).toFixed(2);
+    const economiaAnual = (economiaMensal * 12).toFixed(2);
+
+    // Guarda tudo isso em "resultado", o que faz a tela mostrar
+    // a seção de resultados automaticamente (veja o JSX abaixo)
+    setResultado({
+      consumoMensalKwh: consumoMensalKwh.toFixed(0),
+      painéisNecessarios,
+      areaNecessaria,
+      economiaMensal,
+      economiaAnual,
+    });
+  }
+  async function salvarSimulacao() {
+    const { error } = await supabase.from("simulacoes").insert({
+    conta_luz: parseFloat(contaLuz),
+    tarifa: parseFloat(tarifa),
+    consumo_kwh: Number(resultado.consumoMensalKwh),
+    paineis: resultado.painéisNecessarios,
+    economia_mensal: Number(resultado.economiaMensal),
+    economia_anual: Number(resultado.economiaAnual),
+  });
+
+  if (error) {
+    setMensagemSalvo("Não foi possível salvar: " + error.message);
+    return;
+  }
+  setMensagemSalvo("Simulação salva!");
+  carregarHistorico();
+  }   
+
+  async function carregarHistorico() {
+  const { data, error } = await supabase
+    .from("simulacoes")
+    .select("*")
+    .order("criado_em", { ascending: false })
+    .limit(5);
+
+  if (!error) setHistorico(data);
+}
+
+  useEffect(() => {
+    if (user) {
+      carregarHistorico();
+    } else {
+     setHistorico([]);
+    }
+  }, [user]);
+  // ----------------------------------------------------------
+  // O QUE APARECE NA TELA (JSX)
+  // ----------------------------------------------------------
+  return (
+    <div className="calculadora-container">
+      <div className="calculadora-card">
+        <h2>Calculadora de Economia Solar</h2>
+        <p className="calculadora-descricao">
+          Descubra quanto você pode economizar e quantos painéis solares
+          seriam necessários para o seu consumo.
+        </p>
+
+        <div className="calculadora-layout">
+          <div className="teclado-area">
+            <div className={`input-group campo-numerico ${campoAtivo === "conta" ? "campo-selecionado" : ""}`}>
+              <label htmlFor="conta-luz">Valor médio da sua conta de luz (R$)</label>
+              <input
+                id="conta-luz"
+                type="text"
+                inputMode="decimal"
+                placeholder="Toque para selecionar"
+                value={contaLuz}
+                readOnly
+                onFocus={() => setCampoAtivo("conta")}
+                onClick={() => setCampoAtivo("conta")}
+              />
+            </div>
+
+            <div className="teclado-numerico" aria-label="Teclado numérico">
+              {["1", "2", "3", "4", "5", "6", "7", "8", "9", "limpar", "0", "apagar", ","].map((tecla) => (
+                <button
+                  type="button"
+                  className={`tecla tecla-${tecla}`}
+                  key={tecla}
+                  onClick={() => inserirTecla(tecla)}
+                  aria-label={tecla === "limpar" ? "Limpar" : tecla === "apagar" ? "Apagar último número" : tecla}
+                >
+                  {tecla === "limpar" ? "C" : tecla === "apagar" ? "⌫" : tecla}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className={`tarifa-area input-group ${campoAtivo === "tarifa" ? "campo-selecionado" : ""}`}>
+            <label htmlFor="tarifa">Tarifa da sua distribuidora (R$/kWh)</label>
+            <input
+              id="tarifa"
+              type="text"
+              inputMode="decimal"
+              placeholder="Ex: 0,75"
+              value={tarifa.replace(".", ",")}
+              readOnly
+              onFocus={() => setCampoAtivo("tarifa")}
+              onClick={() => setCampoAtivo("tarifa")}
+            />
+            <span className="input-dica">
+              Selecione este campo e use o teclado numérico para informar a tarifa da sua distribuidora.
+            </span>
+            <div className="tarifa-sugestoes">
+              <span>Valores comuns:</span>
+              {[["0,65", "0.65"], ["0,75", "0.75"], ["0,90", "0.90"]].map(([rotulo, valor]) => (
+                <button type="button" key={valor} onClick={() => {
+                  setTarifa(valor);
+                  setCampoAtivo("tarifa");
+                }}>
+                  R$ {rotulo}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <button className="calcular-btn" onClick={calcularEconomia}>
+          Calcular
+        </button>
+
+        {/* Só mostra a mensagem de erro SE existir erro */}
+        {erro && <p className="calculadora-erro">{erro}</p>}
+
+        {/* Só mostra os resultados SE "resultado" não for null */}
+        {resultado && (
+          <div className="resultado-card">
+            <h3>Sua estimativa:</h3>
+
+            <div className="resultado-item">
+              <span>Consumo mensal estimado:</span>
+              <strong>{resultado.consumoMensalKwh} kWh</strong>
+            </div>
+
+            <div className="resultado-item">
+              <span>Painéis solares necessários:</span>
+              <strong>{resultado.painéisNecessarios} painéis</strong>
+            </div>
+
+            <div className="resultado-item">
+              <span>Área aproximada no telhado:</span>
+              <strong>{resultado.areaNecessaria} m²</strong>
+            </div>
+
+            <div className="resultado-item destaque">
+              <span>Economia mensal estimada:</span>
+              <strong>R$ {resultado.economiaMensal}</strong>
+            </div>
+
+            <div className="resultado-item destaque">
+              <span>Economia anual estimada:</span>
+              <strong>R$ {resultado.economiaAnual}</strong>
+            </div>
+            
+             {user ? (
+              <button className="calcular-btn" onClick={salvarSimulacao}>
+                Salvar simulação
+              </button>
+            ) : (
+             <Link to="/login" className="calcular-btn calcular-btn-link">
+              Entre para salvar esta simulação
+             </Link>
+            )}
+          {mensagemSalvo && <p>{mensagemSalvo}</p>}
+            <p className="resultado-aviso">
+              * Valores aproximados para fins ilustrativos. A economia real
+              depende da irradiação solar da sua região, do tipo de sistema
+              contratado e das condições do imóvel.
+            </p>
+          </div>
+        )}
+        {user && historico.length > 0 && (
+          <div className="resultado-card">
+            <h3>Suas simulações anteriores</h3>
+
+            {historico.map((sim) => (
+              <div className="resultado-item" key={sim.id}>
+                <span>
+                  {new Date(sim.criado_em).toLocaleDateString("pt-BR")} · conta de R$ {sim.conta_luz}
+                </span>
+                <strong>
+                  {sim.paineis} painéis · R$ {Number(sim.economia_mensal).toFixed(2)}/mês
+                </strong>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

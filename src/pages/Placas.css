@@ -1,0 +1,113 @@
+.placas-container {
+  min-height: 80vh;
+  padding: 3rem 1.5rem;
+  background-color: var(--bege, #F6EFE2);
+}
+
+.placas-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+}
+
+.placas-header h2 {
+  color: var(--carvao, #1B1712);
+  font-size: 1.8rem;
+  border-bottom: 2px solid var(--dourado, #D9A441);
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.placas-header p {
+  color: var(--texto-escuro, #241F18);
+  margin-top: 1rem;
+}
+
+.placas-guia,
+.placas-servicos {
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+}
+
+.placas-guia h3,
+.placas-servicos h3 {
+  color: var(--carvao, #1B1712);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.placas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.placa-card {
+  background-color: var(--bege-claro, #FBF7EE);
+  border: 1px solid rgba(217, 164, 65, 0.4);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.placa-card h4 {
+  margin: 0 0 0.3rem;
+  color: var(--laranja-escuro, #96420A);
+}
+
+.placa-eficiencia {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: bold;
+  color: var(--carvao, #1B1712);
+  background-color: var(--dourado, #D9A441);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+}
+
+.placa-card p {
+  color: var(--texto-escuro, #241F18);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.servicos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.servico-card {
+  background-color: var(--bege-claro, #FBF7EE);
+  border: 1px solid rgba(217, 164, 65, 0.4);
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.servico-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(27, 23, 18, 0.12);
+  border-color: var(--laranja, #C1560C);
+}
+
+.servico-icone {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.servico-card h4 {
+  color: var(--carvao, #1B1712);
+  margin: 0 0 0.4rem;
+}
+
+.servico-card p {
+  color: var(--texto-escuro, #241F18);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 0;
+}

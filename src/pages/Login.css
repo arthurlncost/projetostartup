@@ -1,0 +1,139 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  padding: 2rem;
+  background-color: var(--bege, #F6EFE2);
+}
+
+.login-container {
+  background-color: var(--bege-claro, #FBF7EE);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(27, 23, 18, 0.1);
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid rgba(217, 164, 65, 0.4);
+}
+
+.login-form h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  color: var(--carvao, #1B1712);
+  text-align: center;
+}
+
+.login-form p {
+  margin-bottom: 2rem;
+  color: var(--texto-escuro, #241F18);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.input-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--laranja-escuro, #96420A);
+  font-weight: 600;
+}
+
+.input-group input {
+  padding: 0.75rem 1rem;
+  background-color: #fff;
+  border: 1px solid var(--dourado, #D9A441);
+  border-radius: 6px;
+  color: var(--texto-escuro, #241F18);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+  border-color: var(--laranja, #C1560C);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  background-color: var(--laranja, #C1560C);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.login-btn:hover {
+  background-color: var(--laranja-escuro, #96420A);
+}
+
+.login-btn:active {
+  transform: scale(0.98);
+}
+
+.login-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.login-footer p {
+  margin: 0 0 0.6rem;
+  color: var(--texto-escuro, #241F18);
+  font-size: 0.9rem;
+}
+
+.login-footer p:last-child {
+  margin-bottom: 0;
+}
+
+.login-link {
+  color: var(--laranja-escuro, #96420A);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+.login-link-secondary {
+  color: var(--texto-escuro, #241F18);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.login-link-secondary:hover {
+  text-decoration: underline;
+}
+
+.login-abas {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+}
+
+.login-aba {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 8px;
+  background: #EADFC8;
+  color: #241F18;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-aba.ativa {
+  background: var(--laranja, #C1560C);
+  color: #fff;
+}

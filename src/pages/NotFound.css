@@ -1,0 +1,53 @@
+.notfound-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 120px);
+  padding: 2rem 1rem;
+  background-color: var(--bege, #F6EFE2);
+}
+
+.notfound-card {
+  background-color: var(--bege-claro, #FBF7EE);
+  border: 2px solid var(--dourado, #D9A441);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(27, 23, 18, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notfound-title {
+  font-size: 1.6rem;
+  color: var(--texto-escuro, #241F18);
+  margin: 1.5rem 0 0.8rem 0;
+  font-weight: 700;
+}
+
+.notfound-text {
+  color: #554F47;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.notfound-btn {
+  text-decoration: none;
+  background-color: var(--laranja, #C1560C);
+  color: #FFFFFF;
+  padding: 0.8rem 1.8rem;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(193, 86, 12, 0.25);
+}
+
+.notfound-btn:hover {
+  background-color: var(--laranja-escuro, #96420A);
+  transform: translateY(-2px);
+}

@@ -1,0 +1,68 @@
+.servicos-container {
+  min-height: 70vh;
+  padding: 4rem 2rem;
+  background-color: #F6EFE2;
+  color: #241F18;
+}
+
+.servicos-card {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #FBF7EE;
+  border: 1px solid #D9A441;
+  border-radius: 16px;
+}
+
+.servicos-card h2 {
+  margin-top: 0;
+  color: #1B1712;
+}
+
+.servicos-descricao {
+  margin-bottom: 2rem;
+}
+
+.cep-busca {
+  display: flex;
+  gap: 10px;
+}
+
+.cep-busca input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #D9A441;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.cep-busca button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #C1560C;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cep-busca button:hover {
+  background-color: #96420A;
+}
+
+.cep-erro {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.endereco-card {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #F6EFE2;
+  border-left: 4px solid #D9A441;
+  border-radius: 8px;
+}
+
+.endereco-card h3 {
+  margin-top: 0;
+}

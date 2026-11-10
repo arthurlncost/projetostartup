@@ -1,0 +1,22 @@
+:root {
+  --carvao: #1B1712;
+  --bege: #F6EFE2;
+  --bege-claro: #FBF7EE;
+  --texto-escuro: #241F18;
+  --dourado: #D9A441;
+  --laranja: #C1560C;
+  --laranja-escuro: #96420A;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bege);
+  color: var(--texto-escuro);
+  line-height: 1.6;
+}

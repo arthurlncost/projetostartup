@@ -1,0 +1,226 @@
+.vendedor {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+  color: var(--texto-escuro, #241F18);
+}
+
+.vendedor *,
+.vendedor *::before,
+.vendedor *::after {
+  box-sizing: border-box;
+}
+
+/* TOPO */
+.vendedor-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.vendedor-topo h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  overflow-wrap: anywhere;
+}
+
+.vendedor-topo p {
+  margin: 6px 0 0;
+}
+
+/* BOTÕES */
+.vendedor-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border: 2px solid var(--laranja, #C1560C);
+  border-radius: 8px;
+  background: var(--laranja, #C1560C);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.vendedor-btn:hover {
+  background: var(--laranja-escuro, #96420A);
+  border-color: var(--laranja-escuro, #96420A);
+}
+
+.vendedor-btn-cheio {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.vendedor-btn-pequeno {
+  padding: 6px 14px;
+  border: 2px solid var(--laranja, #C1560C);
+  border-radius: 6px;
+  background: none;
+  color: var(--laranja, #C1560C);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.vendedor-btn-pequeno:hover {
+  background: var(--laranja, #C1560C);
+  color: #fff;
+}
+
+/* LAYOUT EM DUAS COLUNAS */
+.vendedor-grade {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.vendedor-lista,
+.vendedor-form {
+  background: var(--bege-claro, #FBF7EE);
+  border: 1px solid #E5D6B5;
+  border-radius: 12px;
+}
+
+/* TABELA */
+.vendedor-tabela-wrap {
+  overflow-x: auto;
+}
+
+.vendedor-tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.vendedor-tabela th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 0.85rem;
+  color: #5b5044;
+}
+
+.vendedor-tabela td {
+  padding: 14px 16px;
+  border-top: 1px solid #E5D6B5;
+}
+
+.vendedor-acoes {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.vendedor-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.status-ativo {
+  background: #E2EFD6;
+  color: #2F5A24;
+}
+
+.status-pausado {
+  background: #EADFC8;
+  color: #5b4a2a;
+}
+
+/* ESTADO VAZIO */
+.vendedor-vazio {
+  padding: 56px 24px;
+  text-align: center;
+}
+
+.vendedor-vazio h2 {
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+}
+
+.vendedor-vazio p {
+  margin: 0;
+  color: #5b5044;
+}
+
+/* FORMULÁRIO */
+.vendedor-form {
+  padding: 24px;
+}
+
+.vendedor-form h2 {
+  margin: 0 0 4px;
+  font-size: 1.25rem;
+}
+
+.vendedor-form p {
+  margin: 0;
+}
+
+.vendedor-form label {
+  display: block;
+  margin-top: 14px;
+  font-weight: 600;
+}
+
+.vendedor-form input,
+.vendedor-form select,
+.vendedor-form textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 11px 12px;
+  border: 1px solid #C9B88F;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+}
+
+.vendedor-form input:focus-visible,
+.vendedor-form select:focus-visible,
+.vendedor-form textarea:focus-visible,
+.vendedor-btn:focus-visible,
+.vendedor-btn-pequeno:focus-visible {
+  outline: 3px solid var(--laranja, #C1560C);
+  outline-offset: 2px;
+}
+
+/* CELULAR */
+@media (max-width: 900px) {
+  .vendedor-grade {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .vendedor {
+    padding: 24px 16px 40px;
+  }
+}
+
+.vendedor-mensagem {
+  margin-top: 14px;
+  font-weight: 600;
+}
+
+.vendedor-btn-cancelar {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border: 2px solid #C9B88F;
+  border-radius: 8px;
+  background: none;
+  color: #5b4a2a;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.vendedor-btn-cancelar:hover {
+  background: #EADFC8;
+}
