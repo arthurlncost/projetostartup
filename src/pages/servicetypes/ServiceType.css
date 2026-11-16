@@ -112,3 +112,130 @@
 .servicetype-voltar:hover {
   text-decoration: underline;
 }
+
+
+/* Marketplace de serviços */
+
+.servicetype-marketplace {
+  max-width: 1100px;
+  margin: 4rem auto 2rem;
+}
+
+.servicetype-marketplace-topo {
+  margin-bottom: 2rem;
+}
+
+.servicetype-marketplace-topo h2 {
+  color: var(--carvao, #1B1712);
+  margin: 0.5rem 0;
+}
+
+.servicetype-marketplace-topo p {
+  color: var(--texto-escuro, #241F18);
+}
+
+.servicetype-etiqueta {
+  color: var(--laranja-escuro, #96420A);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.servicetype-anuncios-grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.servicetype-anuncio-card {
+  background: var(--bege-claro, #FBF7EE);
+  border: 1px solid rgba(217, 164, 65, 0.4);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.servicetype-imagem-capa {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.servicetype-miniaturas {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.servicetype-miniaturas img {
+  width: 65px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.servicetype-tag {
+  color: var(--laranja-escuro, #96420A);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.servicetype-anuncio-card h3 {
+  color: var(--carvao, #1B1712);
+  margin: 0;
+}
+
+.servicetype-local,
+.servicetype-descricao,
+.servicetype-empresa {
+  color: var(--texto-escuro, #241F18);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.servicetype-preco {
+  color: var(--laranja-escuro, #96420A);
+  font-size: 1.1rem;
+}
+
+.servicetype-btn {
+  display: block;
+  text-align: center;
+  background: var(--laranja, #C1560C);
+  color: white;
+  text-decoration: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: 700;
+  margin-top: auto;
+}
+
+.servicetype-btn:hover {
+  opacity: 0.9;
+}
+
+.servicetype-status,
+.servicetype-vazio {
+  text-align: center;
+  padding: 2rem;
+  color: var(--texto-escuro, #241F18);
+}
+
+.servicetype-vazio {
+  background: var(--bege-claro, #FBF7EE);
+  border-radius: 12px;
+}
+
+.servicetype-vazio span {
+  font-size: 2rem;
+}
+
+.servicetype-vazio h3 {
+  color: var(--carvao, #1B1712);
+}
+
+.servicetype-erro {
+  color: #b42318;
+}

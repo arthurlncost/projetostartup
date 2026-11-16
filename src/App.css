@@ -256,3 +256,23 @@
   to { transform: rotate(1deg); }
 }
 */
+
+/* Interação visual da mascote incorporada da versão do Caique. */
+.mascote-image {
+  display: block;
+  transform-origin: center bottom;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.mascote-image:hover {
+  filter: drop-shadow(0 8px 12px rgba(193, 86, 12, 0.3));
+  transform: translateY(-6px) scale(1.05) rotate(-2deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mascote-image {
+    transition: none;
+  }
+}
+
+/* Responsividade para telemóveis */

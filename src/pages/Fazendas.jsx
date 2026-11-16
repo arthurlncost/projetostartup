@@ -29,7 +29,7 @@ export default function Fazendas() {
     async function carregar() {
       const { data, error } = await supabase
         .from('anuncios')
-        .select('id, titulo, descricao, cidade, preco, empresas(nome)')
+        .select('id, titulo, descricao, cidade, preco, imagens, empresas(nome)')
         .eq('categoria', 'fazenda')
         .eq('ativo', true)
         .order('criado_em', { ascending: false });
@@ -136,6 +136,8 @@ export default function Fazendas() {
           <div className="mkt-grade">
             {anuncios.map((a) => (
               <article className="mkt-card" key={a.id}>
+                {a.imagens?.[0] && <img className="marketplace-imagem-capa" src={a.imagens[0]} alt={`Foto de ${a.titulo}`} loading="lazy" />}
+                {a.imagens?.length > 1 && <div className="marketplace-miniaturas">{a.imagens.slice(1).map((url, i) => <img key={url} src={url} alt={`Foto ${i + 2} de ${a.titulo}`} loading="lazy" />)}</div>}
                 <span className="mkt-etiqueta">Fazenda solar</span>
                 <h3>{a.titulo}</h3>
                 {a.cidade && <p className="mkt-local">{a.cidade}</p>}

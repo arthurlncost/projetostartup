@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../services/supabase";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { buscarIrradiacaoSolar } from "../services/irradiacaoSolar";
 import "./Calculadora.css";
 
 export default function Calculadora() {
@@ -31,6 +32,9 @@ export default function Calculadora() {
   // Tarifa de energia em R$/kWh (já vem com um valor padrão,
   // mas o usuário pode alterar)
   const [tarifa, setTarifa] = useState("0.75");
+  const [cidade, setCidade] = useState("");
+  const [estado, setEstado] = useState("");
+  const [consultandoSol, setConsultandoSol] = useState(false);
 
   // Vai guardar o resultado do cálculo (começa como null =
   // "ainda não calculei nada")
@@ -47,58 +51,61 @@ export default function Calculadora() {
   // FUNÇÃO QUE FAZ O CÁLCULO
   // ----------------------------------------------------------
   // Isso roda quando o usuário clica no botão "Calcular".
-  function calcularEconomia() {
-    const valorConta = parseFloat(contaLuz);
-    const valorTarifa = parseFloat(tarifa);
+  async function calcularEconomia() {
+    const valorConta = Number.parseFloat(contaLuz);
+    const valorTarifa = Number.parseFloat(tarifa);
 
-    // Validação simples: os campos precisam ser números válidos e maiores que zero
-    if (!valorConta || valorConta <= 0 || !valorTarifa || valorTarifa <= 0) {
-      setErro("Preencha os campos com valores válidos maiores que zero.");
+    if (!Number.isFinite(valorConta) || valorConta <= 0 || !Number.isFinite(valorTarifa) || valorTarifa <= 0) {
+      setErro("Preencha a conta de luz e a tarifa com valores maiores que zero.");
       setResultado(null);
-      return; // para a função aqui, não continua o cálculo
+      return;
+    }
+    if (!cidade.trim() || !estado.trim()) {
+      setErro("Informe sua cidade e seu estado para calcular a incidência solar.");
+      setResultado(null);
+      return;
     }
 
-    
+    setErro("");
+    setMensagemSalvo("");
+    setConsultandoSol(true);
 
-    setErro(""); // limpa erro anterior, se houver
+    try {
+      const dadosSol = await buscarIrradiacaoSolar(cidade.trim(), estado.trim());
+      const consumoMensalKwh = valorConta / valorTarifa;
+      // Potência do painel (450 W) × horas de sol pico × dias × rendimento do sistema.
+      const potenciaPainelKw = 0.45;
+      const fatorDesempenho = 0.8;
+      const geracaoPorPainelKwh = potenciaPainelKw * dadosSol.irradiacao * 30 * fatorDesempenho;
+      const paineisNecessarios = Math.ceil(consumoMensalKwh / geracaoPorPainelKwh);
+      const areaNecessaria = (paineisNecessarios * 2.5).toFixed(1);
+      const percentualEconomia = 0.18;
+      const economiaMensal = (valorConta * percentualEconomia).toFixed(2);
+      const economiaAnual = (Number(economiaMensal) * 12).toFixed(2);
 
-    // 1) Quantos kWh a pessoa consome por mês
-    //    (valor da conta dividido pelo preço do kWh)
-    const consumoMensalKwh = valorConta / valorTarifa;
-
-    // 2) Estimativa de geração de 1 painel solar (450W) no Brasil:
-    //    em média, gera cerca de 65 kWh por mês (varia por região/sol)
-    const geracaoPorPainelKwh = 65;
-
-    // 3) Quantos painéis seriam necessários para cobrir o consumo
-    const painéisNecessarios = Math.ceil(consumoMensalKwh / geracaoPorPainelKwh);
-
-    // 4) Área aproximada no telhado (cada painel ocupa ~2,5 m²)
-    const areaNecessaria = (painéisNecessarios * 2.5).toFixed(1);
-
-    // 5) Economia estimada: modelo de energia solar por assinatura
-    //    costuma gerar entre 15% e 20% de desconto na conta.
-    //    Vamos usar 18% como estimativa média.
-    const percentualEconomia = 0.18;
-    const economiaMensal = (valorConta * percentualEconomia).toFixed(2);
-    const economiaAnual = (economiaMensal * 12).toFixed(2);
-
-    // Guarda tudo isso em "resultado", o que faz a tela mostrar
-    // a seção de resultados automaticamente (veja o JSX abaixo)
-    setResultado({
-      consumoMensalKwh: consumoMensalKwh.toFixed(0),
-      painéisNecessarios,
-      areaNecessaria,
-      economiaMensal,
-      economiaAnual,
-    });
+      setResultado({
+        consumoMensalKwh: consumoMensalKwh.toFixed(0),
+        paineisNecessarios,
+        areaNecessaria,
+        economiaMensal,
+        economiaAnual,
+        irradiacao: dadosSol.irradiacao.toFixed(2),
+        geracaoPorPainel: geracaoPorPainelKwh.toFixed(1),
+        localizacao: `${cidade.trim()} - ${estado.trim().toUpperCase()}`,
+      });
+    } catch (error) {
+      setErro(error.message || "Não foi possível consultar a incidência solar. Confira a cidade e tente novamente.");
+      setResultado(null);
+    } finally {
+      setConsultandoSol(false);
+    }
   }
   async function salvarSimulacao() {
     const { error } = await supabase.from("simulacoes").insert({
     conta_luz: parseFloat(contaLuz),
     tarifa: parseFloat(tarifa),
     consumo_kwh: Number(resultado.consumoMensalKwh),
-    paineis: resultado.painéisNecessarios,
+    paineis: resultado.paineisNecessarios,
     economia_mensal: Number(resultado.economiaMensal),
     economia_anual: Number(resultado.economiaAnual),
   });
@@ -152,6 +159,32 @@ export default function Calculadora() {
           />
         </div>
 
+        <div className="input-group">
+          <label htmlFor="cidade-solar">Cidade</label>
+          <input
+            id="cidade-solar"
+            type="text"
+            placeholder="Ex: Sorocaba"
+            value={cidade}
+            onChange={(e) => setCidade(e.target.value)}
+            autoComplete="address-level2"
+          />
+        </div>
+
+        <div className="input-group">
+          <label htmlFor="estado-solar">Estado (UF)</label>
+          <input
+            id="estado-solar"
+            type="text"
+            placeholder="Ex: SP"
+            value={estado}
+            onChange={(e) => setEstado(e.target.value.toUpperCase().slice(0, 2))}
+            maxLength={2}
+            autoComplete="address-level1"
+          />
+          <span className="input-dica">Usaremos a média histórica de irradiação solar da região.</span>
+        </div>
+
         {/* Campo: tarifa de energia */}
         <div className="input-group">
           <label>Tarifa da sua distribuidora (R$/kWh)</label>
@@ -167,8 +200,8 @@ export default function Calculadora() {
           </span>
         </div>
 
-        <button className="calcular-btn" onClick={calcularEconomia}>
-          Calcular
+        <button className="calcular-btn" onClick={calcularEconomia} disabled={consultandoSol}>
+          {consultandoSol ? "Consultando incidência solar..." : "Calcular"}
         </button>
 
         {/* Só mostra a mensagem de erro SE existir erro */}
@@ -186,7 +219,22 @@ export default function Calculadora() {
 
             <div className="resultado-item">
               <span>Painéis solares necessários:</span>
-              <strong>{resultado.painéisNecessarios} painéis</strong>
+              <strong>{resultado.paineisNecessarios} painéis</strong>
+            </div>
+
+            <div className="resultado-item">
+              <span>Localização considerada:</span>
+              <strong>{resultado.localizacao}</strong>
+            </div>
+
+            <div className="resultado-item">
+              <span>Irradiação solar média:</span>
+              <strong>{resultado.irradiacao} kWh/m²/dia</strong>
+            </div>
+
+            <div className="resultado-item">
+              <span>Geração estimada por painel (450 W):</span>
+              <strong>{resultado.geracaoPorPainel} kWh/mês</strong>
             </div>
 
             <div className="resultado-item">
@@ -216,8 +264,10 @@ export default function Calculadora() {
           {mensagemSalvo && <p>{mensagemSalvo}</p>}
             <p className="resultado-aviso">
               * Valores aproximados para fins ilustrativos. A economia real
-              depende da irradiação solar da sua região, do tipo de sistema
-              contratado e das condições do imóvel.
+              estimativa baseada na climatologia da NASA POWER, em painel de 450 W
+              e fator de desempenho de 80%. O resultado real varia com inclinação,
+              orientação, sombras, clima e perdas do sistema. A economia de 18% é
+              uma referência ilustrativa, não uma proposta comercial.
             </p>
           </div>
         )}

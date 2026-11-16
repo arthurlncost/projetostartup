@@ -99,12 +99,7 @@ export default function Login() {
           {/* Nova secção de links adicionada */}
           <div className="login-footer">
 
-            <p>
-              Não tem uma conta?{' '}
-              <Link to="/registo" className="login-link">
-                Registe-se aqui
-              </Link>
-            </p>
+           
 
             <p>
               <Link
@@ -117,7 +112,7 @@ export default function Login() {
             <p>
               {aba === 'cliente' ? 'Não tem uma conta? ' : 'Quer anunciar? '}
               <Link to={aba === 'cliente' ? '/registo' : '/cadastro-empresa'} className="login-link">
-                {aba === 'cliente' ? 'Registe-se aqui' : 'Cadastre sua empresa'}
+              {aba === 'cliente' ? 'Registe-se aqui' : 'Cadastre sua empresa'}
               </Link>
             </p>
 

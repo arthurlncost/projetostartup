@@ -1,173 +1,213 @@
-:root {
-  --carvao: #1B1712;
-  --bege: #F6EFE2;
-  --bege-claro: #FBF7EE;
-  --texto-escuro: #241F18;
-  --dourado: #D9A441;
-  --laranja: #C1560C;
-  --laranja-escuro: #96420A;
-}
+.home-container { padding: 2rem 1.5rem 4rem; background: var(--bege, #F6EFE2); color: var(--texto-escuro, #241F18); }
+.home-hero, .home-recursos, .home-como-funciona, .home-ods, .home-final-cta { max-width: 1160px; margin-left: auto; margin-right: auto; }
+.home-hero { display: flex; align-items: center; justify-content: space-between; gap: 2rem; min-height: 370px; padding: 3rem clamp(1.5rem, 5vw, 4rem); border: 1px solid rgba(217, 164, 65, .45); border-radius: 22px; background: linear-gradient(115deg, #fffaf0 0%, #f6e7c8 100%); overflow: hidden; }
+.home-hero-texto { max-width: 690px; }
+.home-etiqueta { color: var(--laranja-escuro, #96420A); font-size: .76rem; font-weight: 850; letter-spacing: .09em; }
+.home-hero h1 { margin: .8rem 0 1rem; color: var(--carvao, #1B1712); font-size: clamp(2.3rem, 5vw, 4rem); line-height: 1.08; }
+.home-hero h1 span { color: var(--laranja, #C1560C); }
+.home-hero-texto > p { max-width: 650px; font-size: 1.08rem; line-height: 1.7; color: #5b5044; }
+.home-hero-acoes, .home-final-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin-top: 1.5rem; }
+.home-botao-principal, .home-final-acoes > a:first-child { padding: .85rem 1.2rem; border-radius: 8px; background: var(--laranja, #C1560C); color: white; text-decoration: none; font-weight: 800; }
+.home-botao-principal:hover, .home-final-acoes > a:first-child:hover { background: var(--laranja-escuro, #96420A); color: white; }
+.home-botao-secundario, .home-final-secundario { padding: .8rem 1rem; border: 1px solid rgba(150, 66, 10, .45); border-radius: 8px; color: var(--laranja-escuro, #96420A); text-decoration: none; font-weight: 700; }
+.home-hero-mascote { flex: 0 0 190px; display: flex; justify-content: center; align-items: center; }
+.home-recursos { padding: 4rem 0 3.5rem; }
+.home-secao-cabecalho { margin-bottom: 1.6rem; }
+.home-secao-cabecalho h2, .home-como-funciona h2, .home-ods h2 { margin: .45rem 0 .5rem; color: var(--carvao, #1B1712); font-size: clamp(1.65rem, 3vw, 2.2rem); }
+.home-secao-cabecalho p, .home-como-funciona > div > p, .home-ods > div > p { color: #62584c; }
+.home-recursos-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.home-recurso-card { display: flex; flex-direction: column; min-height: 245px; padding: 1.4rem; border: 1px solid rgba(217, 164, 65, .42); border-radius: 14px; background: var(--bege-claro, #FBF7EE); color: inherit; text-decoration: none; transition: transform .2s, box-shadow .2s, border-color .2s; }
+.home-recurso-card:hover { transform: translateY(-4px); border-color: var(--laranja, #C1560C); box-shadow: 0 9px 22px rgba(27, 23, 18, .09); }
+.home-recurso-icone { margin-bottom: .8rem; font-size: 2rem; }
+.home-recurso-card h3 { margin-bottom: .45rem; color: var(--carvao, #1B1712); font-size: 1.12rem; }
+.home-recurso-card p { color: #62584c; font-size: .92rem; line-height: 1.55; }
+.home-recurso-acao { margin-top: auto; padding-top: 1rem; color: var(--laranja-escuro, #96420A); font-weight: 800; }
+.home-como-funciona { display: grid; grid-template-columns: .8fr 1.2fr; gap: 3rem; padding: 2.5rem; border-radius: 18px; background: #fffaf0; border: 1px solid rgba(217, 164, 65, .4); }
+.home-passos { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
+.home-passos li { display: flex; align-items: flex-start; gap: 1rem; }
+.home-passos li > span { display: grid; flex: 0 0 42px; width: 42px; height: 42px; place-items: center; border-radius: 50%; background: #f0dfb9; color: var(--laranja-escuro, #96420A); font-weight: 900; }
+.home-passos strong { color: var(--carvao, #1B1712); }
+.home-passos p { margin-top: .2rem; color: #62584c; font-size: .9rem; }
+.home-ods { display: flex; justify-content: space-between; gap: 2rem; padding: 3.5rem 0; }
+.home-ods > div:first-child { max-width: 530px; }
+.home-ods-lista { display: grid; grid-template-columns: repeat(2, minmax(170px, 1fr)); gap: .7rem; align-content: center; }
+.home-ods-lista span { padding: .8rem 1rem; border-left: 4px solid var(--dourado, #D9A441); border-radius: 6px; background: #fffaf0; font-size: .88rem; }
+.home-ods-lista strong { display: block; color: var(--laranja-escuro, #96420A); }
+.home-final-cta { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 2rem 2.2rem; border-radius: 16px; background: var(--carvao, #1B1712); color: white; }
+.home-final-cta h2 { margin-bottom: .35rem; color: white; }
+.home-final-cta p { color: #e5d9c7; }
+.home-final-acoes { margin-top: 0; }
+.home-final-secundario { border-color: #d9a441; color: #f4d99f; }
+@media (max-width: 850px) { .home-recursos-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .home-como-funciona { grid-template-columns: 1fr; gap: 1.5rem; } .home-ods, .home-final-cta { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 580px) { .home-container { padding: 1rem 1rem 2.5rem; } .home-hero { min-height: auto; padding: 2rem 1.3rem; } .home-hero-mascote { display: none; } .home-recursos { padding: 2.8rem 0; } .home-recursos-grid { grid-template-columns: 1fr; } .home-recurso-card { min-height: 205px; } .home-como-funciona { padding: 1.5rem; } .home-ods { padding: 2.5rem 0; } .home-ods-lista { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); } .home-final-cta { padding: 1.5rem; } }
 
-/* Hero Section */
-.hero-section {
-  text-align: center;
-  padding: 2rem 1rem 3rem;
-}
+.home-parceiros { max-width: 1160px; margin: 0 auto; padding: 2rem 0 0; }
+.home-parceiros h2 { margin: .45rem 0 .5rem; color: var(--carvao, #1B1712); font-size: clamp(1.5rem, 3vw, 2rem); }
+.home-parceiros > div:first-child p { color: #62584c; }
+.home-parceiros-links { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1rem; }
+.home-parceiros-links a { padding: .65rem .9rem; border: 1px solid rgba(217, 164, 65, .5); border-radius: 8px; background: #fffaf0; color: var(--laranja-escuro, #96420A); text-decoration: none; font-weight: 750; }
+.home-parceiros-links a:hover { border-color: var(--laranja, #C1560C); background: #f7e8c9; }
 
-.hero-title {
-  color: var(--laranja-escuro);
-  font-size: 2.5rem;
-  margin-top: 1rem;
-  font-weight: 800;
-}
 
-.hero-subtitle {
-  font-size: 1.2rem;
-  color: var(--texto-escuro);
-  max-width: 650px;
-  margin: 0.8rem auto 0;
+/* Integração do carrossel educativo da versão do Caique */
+.home-carrossel {
+  max-width: 1160px;
+  margin: 3rem auto 1rem;
 }
-
-/* Secções Gerais */
-.info-section {
-  margin: 3rem 0;
-  text-align: center;
+.home-carrossel-cabecalho,
+.home-mapa-cabecalho {
+  margin-bottom: 1.25rem;
 }
-
-.info-section h2,
-.ods-section h2 {
-  color: var(--carvao);
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid var(--dourado);
-  display: inline-block;
-  padding-bottom: 0.5rem;
+.home-carrossel-cabecalho h2,
+.home-mapa-cabecalho h2 {
+  margin: .45rem 0 .5rem;
+  color: var(--carvao, #1B1712);
+  font-size: clamp(1.55rem, 3vw, 2.1rem);
 }
-
-/* Passos - Como Funciona */
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+.home-carrossel-cabecalho p,
+.home-mapa-cabecalho p {
+  color: #62584c;
 }
-
-/* Antes: fundo #1E1E1E (quase preto) com texto escuro por cima -
-   ilegível. Agora usa o mesmo padrão claro das outras páginas:
-   card bege-claro + borda dourada + texto escuro (contraste OK). */
-.step-card {
-  background-color: var(--bege-claro);
-  padding: 1.5rem;
-  border-radius: 10px;
-  border: 1px solid rgba(217, 164, 65, 0.4);
+.home-carrossel-janela {
+  overflow: hidden;
+  border: 1px solid rgba(217, 164, 65, .45);
+  border-radius: 18px;
+  background: #fffaf0;
+}
+.home-carrossel-trilho {
+  display: flex;
+  transition: transform .65s ease;
+}
+.home-carrossel-slide {
   position: relative;
-  text-align: center;
-}
-
-.step-card h3 {
-  color: var(--carvao);
-  margin-bottom: 0.5rem;
-}
-
-.step-card p {
-  color: var(--texto-escuro);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.step-number {
-  background-color: var(--laranja);
-  color: #FFF;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  margin: 0 auto 1rem;
+  flex: 0 0 100%;
+  min-height: 285px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #f6efe2;
 }
-
-/* Vantagens Grid */
-.advantages-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+.home-carrossel-slide > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-
-/* Antes: background-color: var(--texto-escuro) (marrom bem escuro)
-   sem cor de texto definida no parágrafo -> texto quase invisível.
-   Agora segue o mesmo card claro usado no resto do site. */
-.advantage-card {
-  background-color: var(--bege-claro);
-  padding: 1.5rem;
-  border-radius: 10px;
-  border: 1px solid rgba(217, 164, 65, 0.4);
-  text-align: center;
+.home-carrossel-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(251,247,238,.97) 0%, rgba(251,247,238,.88) 48%, rgba(251,247,238,.18) 100%);
 }
-
-.adv-icon {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 0.5rem;
+.home-carrossel-conteudo {
+  position: relative;
+  z-index: 1;
+  max-width: 650px;
+  padding: 2.5rem clamp(1.25rem, 5vw, 3.5rem);
 }
-
-.advantage-card h4 {
-  color: var(--laranja-escuro);
-  margin-bottom: 0.5rem;
+.home-carrossel-numero {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  margin-bottom: .75rem;
+  border-radius: 50%;
+  background: var(--laranja, #C1560C);
+  color: white;
+  font-weight: 800;
 }
-
-.advantage-card p {
-  color: var(--texto-escuro);
-  font-size: 0.9rem;
-  line-height: 1.5;
+.home-carrossel-conteudo h3 {
+  margin-bottom: .55rem;
+  color: var(--carvao, #1B1712);
+  font-size: clamp(1.5rem, 3vw, 2rem);
 }
-
-/* ODS Section */
-/* Antes: background-color: #1E1E1E com h2 na cor var(--carvao)
-   (quase preto em cima de quase preto = texto some).
-   Agora usa fundo bege-claro, igual ao resto do site. */
-.ods-section {
-  text-align: center;
-  background-color: var(--bege-claro);
-  padding: 2.5rem 1.5rem;
-  border-radius: 12px;
-  margin-top: 3rem;
-  border: 1px solid rgba(217, 164, 65, 0.4);
+.home-carrossel-conteudo p {
+  max-width: 560px;
+  color: #41382e;
+  line-height: 1.65;
 }
-
-.ods-section > p {
-  color: var(--texto-escuro);
-}
-
-.ods-grid {
+.home-carrossel-controles {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
-  margin-top: 1.5rem;
+  margin-top: .9rem;
 }
-
-.ods-badge {
-  background-color: var(--bege);
-  border-left: 4px solid var(--laranja);
-  padding: 1rem;
-  border-radius: 6px;
-  min-width: 200px;
+.home-carrossel-controles > button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid rgba(150,66,10,.4);
+  border-radius: 50%;
+  background: #fffaf0;
+  color: var(--laranja-escuro, #96420A);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.home-carrossel-controles > button:hover {
+  background: #f7e8c9;
+}
+.home-carrossel-indicadores {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  gap: .45rem;
+}
+.home-carrossel-indicadores button {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 99px;
+  background: #c9b99e;
+  cursor: pointer;
+}
+.home-carrossel-indicadores button.ativo {
+  width: 24px;
+  background: var(--laranja, #C1560C);
 }
 
-.ods-badge strong {
-  color: var(--laranja-escuro);
-  font-size: 1.1rem;
+/* Mapa Google Maps da versão do Caique, integrado ao tema original */
+.home-mapa {
+  max-width: 1160px;
+  margin: 3.5rem auto 1rem;
 }
-
-.ods-badge span {
-  font-size: 0.85rem;
-  color: var(--texto-escuro);
-  margin-top: 0.2rem;
-  text-align: left;
+.home-mapa-area {
+  display: flex;
+  min-height: 360px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(217,164,65,.45);
+  border-radius: 16px;
+  background: #fffaf0;
+}
+.home-google-mapa {
+  width: 100%;
+  height: 360px;
+}
+.home-mapa-mensagem {
+  padding: 1.5rem;
+  color: var(--carvao, #1B1712);
+  text-align: center;
+  line-height: 1.6;
+}
+.home-mapa-nota {
+  margin-top: .6rem;
+  color: #716557;
+  font-size: .82rem;
+}
+@media (max-width: 580px) {
+  .home-carrossel-slide { min-height: 300px; }
+  .home-carrossel-slide::after {
+    background: rgba(251,247,238,.84);
+  }
+  .home-carrossel-conteudo { padding: 1.5rem; }
+  .home-mapa-area,
+  .home-google-mapa { min-height: 300px; height: 300px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-carrossel-trilho { transition: none; }
 }
