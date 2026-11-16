@@ -88,6 +88,15 @@
   transform: scale(0.98);
 }
 
+.calcular-btn.calcular-btn-link {
+  display: inline-block;
+  width: auto;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
 /* Mensagem de erro */
 .calculadora-erro {
   margin-top: 1rem;
