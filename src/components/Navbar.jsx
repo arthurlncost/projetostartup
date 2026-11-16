@@ -70,7 +70,7 @@ export default function Navbar() {
                 <li><NavLink to="/partners/sunmobi" className="nav-item" onClick={fecharMenu}>SunMobi</NavLink></li>
                 <li><NavLink to="/partners/enerlivre" className="nav-item" onClick={fecharMenu}>Enerlivre</NavLink></li>
                 <li><NavLink to="/partners/evosolar" className="nav-item" onClick={fecharMenu}>EvoSolar</NavLink></li>
-                <li><NavLink to="/partners/edp" className="nav-item" onClick={fecharMenu}>EDP Soluções</NavLink></li>
+                <li><NavLink to="/partners/edpsolucoes" className="nav-item" onClick={fecharMenu}>EDP Soluções</NavLink></li>
               </ul>
             </div>
           </div>
@@ -91,9 +91,9 @@ export default function Navbar() {
               </span>
               <ul className={`dropdown-menu ${dropdownAbertoPlacas ? 'show' : ''}`}>
                 <li><span style={{ fontSize: '0.8rem', color: '#D9A441', padding: '0.2rem 1rem', display: 'block' }}>Categorias:</span></li>
-                <li><NavLink to="/servicetypes/venda" className="nav-item" onClick={fecharMenu}>Comprar</NavLink></li>
-                <li><NavLink to="/servicetypes/manutencao" className="nav-item" onClick={fecharMenu}>Manutenção</NavLink></li>
-                <li><NavLink to="/servicetypes/descarte" className="nav-item" onClick={fecharMenu}>Descarte & Reciclagem</NavLink></li>
+                <li><NavLink to="/placas/venda" className="nav-item" onClick={fecharMenu}>Comprar</NavLink></li>
+                <li><NavLink to="/placas/manutencao" className="nav-item" onClick={fecharMenu}>Manutenção</NavLink></li>
+                <li><NavLink to="/placas/descarte" className="nav-item" onClick={fecharMenu}>Descarte & Reciclagem</NavLink></li>
               </ul>
             </div>
           </div>

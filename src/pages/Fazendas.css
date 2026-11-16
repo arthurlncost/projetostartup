@@ -334,3 +334,25 @@ html {
     transition: none;
   }
 }
+
+.marketplace-imagem-capa {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.marketplace-miniaturas {
+  display: flex;
+  gap: 7px;
+  margin: 0 0 12px;
+  overflow-x: auto;
+}
+.marketplace-miniaturas img {
+  width: 58px;
+  height: 48px;
+  flex: 0 0 auto;
+  object-fit: cover;
+  border-radius: 6px;
+}

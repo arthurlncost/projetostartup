@@ -37,9 +37,9 @@ O **Eletricitrus** é uma plataforma web voltada para o setor de energia solar f
 ## 🛠️ Tecnologias Utilizadas
 
 ### Front-end
-- **React 18**: Construção da interface baseada em componentes reativos e reutilizáveis.
+- **React 19**: Construção da interface baseada em componentes reativos e reutilizáveis.
 - **Vite**: Build tool e ambiente de desenvolvimento ultrarrápido.
-- **React Router Dom (v6)**: Gerenciamento de rotas e navegação SPA (*Single Page Application*).
+- **React Router Dom (v7)**: Gerenciamento de rotas e navegação SPA (*Single Page Application*).
 - **CSS3 / Variables**: Estilização responsiva mantendo a identidade visual oficial da marca.
 
 ### Back-end & Banco de Dados (BaaS)
@@ -48,7 +48,10 @@ O **Eletricitrus** é uma plataforma web voltada para o setor de energia solar f
   - **PostgreSQL Database**: Persistência de dados de perfis, simulações salvas e histórico de orçamentos.
 
 ### Integrações & APIs Externas
-- **ViaCEP API**: Consumo de serviço REST para consulta e preenchimento automático de informações de endereço a partir do CEP.
+- **ViaCEP API**: consulta e preenchimento de endereço a partir do CEP.
+- **Open-Meteo Geocoding**: obtenção de coordenadas a partir da cidade e do estado informados na calculadora.
+- **NASA POWER**: consulta de dados climatológicos de irradiação solar usados na estimativa da calculadora.
+- **Google Maps JavaScript API** (`@react-google-maps/api`): mapa de referência opcional na Home.
 
 ---
 
@@ -173,3 +176,40 @@ Desenvolvido por estudantes do curso de **Análise e Desenvolvimento de Sistemas
 - [Vitoria Carara C.](https://github.com/vitocaracesar-ads)
 
 ---
+
+
+## 🌞 Recursos integrados na Home
+
+A Home mantém a estrutura de apresentação, atalhos para as áreas da plataforma, parceiros, propósito/ODS e chamadas de ação conforme o estado de autenticação. Foi incorporado um carrossel educativo de quatro etapas (Captação, Conversão, Consumo e Créditos), com navegação automática e controles manuais.
+
+Também foi incorporado o mapa de referência da versão do Caique. Ele utiliza Google Maps e apresenta um marcador fixo em São Paulo; não representa geolocalização do usuário nem a posição de fazendas cadastradas. O mapa é opcional e só é carregado quando a chave está configurada.
+
+## 🔐 Variáveis de ambiente
+
+Crie um arquivo `.env` na raiz do projeto a partir de `.env.example`:
+
+```env
+VITE_SUPABASE_URL=
+VITE_SUPABASE_KEY=
+VITE_GOOGLE_MAPS_API_KEY=
+```
+
+Preencha as variáveis do Supabase com os dados do projeto utilizado pela equipe. A chave Google Maps é opcional e necessária apenas para o mapa da Home. Não publique o arquivo `.env` no Git.
+
+## 🧪 Comandos úteis
+
+```bash
+npm ci
+npm run dev
+npm run lint
+npm run build
+```
+
+Para detalhes das decisões de integração, limitações encontradas e validações pendentes, consulte [`INTEGRACAO.md`](./INTEGRACAO.md).
+
+
+## Fotos nos anúncios do marketplace
+
+O painel do vendedor permite selecionar até 5 imagens por anúncio (JPG, PNG ou WEBP, até 5 MB por arquivo). As imagens são enviadas ao Supabase Storage e suas URLs são gravadas na coluna `imagens` da tabela `anuncios`. As páginas de Placas e Fazendas exibem a imagem principal e miniaturas adicionais.
+
+Antes de testar, execute `supabase-marketplace-imagens.sql` no SQL Editor do Supabase. O script cria a coluna `imagens`, configura o bucket público `anuncios-imagens` e define políticas de acesso para que cada vendedor envie arquivos somente à própria pasta.

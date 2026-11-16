@@ -45,6 +45,7 @@ export default function Mascote({ tipo = 'padrao', largura = 120, alt = 'Solzinh
       )}
 
       <img 
+        className="mascote-image"
         src={caminhoImagem} 
         alt={alt} 
         style={{ width: `${largura}px`, height: 'auto', objectFit: 'contain' }} 
