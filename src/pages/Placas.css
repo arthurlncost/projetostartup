@@ -1,113 +1,88 @@
 .placas-container {
   min-height: 80vh;
-  padding: 3rem 1.5rem;
-  background-color: var(--bege, #F6EFE2);
-}
-
-.placas-header {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 2.5rem;
-}
-
-.placas-header h2 {
-  color: var(--carvao, #1B1712);
-  font-size: 1.8rem;
-  border-bottom: 2px solid var(--dourado, #D9A441);
-  display: inline-block;
-  padding-bottom: 0.5rem;
-}
-
-.placas-header p {
+  padding: 3.5rem 1.5rem 4rem;
+  background: var(--bege, #F6EFE2);
   color: var(--texto-escuro, #241F18);
-  margin-top: 1rem;
+}
+.placas-header { max-width: 780px; margin: 0 auto 3.5rem; text-align: center; }
+.placas-etiqueta { display: inline-block; padding: .3rem .75rem; border-radius: 20px; background: #f0dfb9; color: var(--laranja-escuro, #96420A); font-size: .78rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.placas-header h1 { margin: .8rem 0; color: var(--carvao, #1B1712); font-size: clamp(2rem, 5vw, 3rem); }
+.placas-header p { max-width: 650px; margin: 0 auto 1.4rem; line-height: 1.7; }
+.placas-cta, .placas-anunciar { display: inline-block; padding: .8rem 1.2rem; border-radius: 8px; background: var(--laranja, #C1560C); color: #fff; text-decoration: none; font-weight: 700; }
+.placas-cta:hover, .placas-anunciar:hover { background: var(--laranja-escuro, #96420A); color: #fff; }
+.placas-guia, .placas-servicos, .placas-anuncios { max-width: 1120px; margin: 0 auto 3.5rem; }
+.placas-guia h2, .placas-servicos h2, .placas-anuncios h2 { margin-bottom: 1.4rem; color: var(--carvao, #1B1712); font-size: clamp(1.45rem, 3vw, 2rem); }
+.placas-guia > h2, .placas-servicos > h2 { text-align: center; }
+.placas-grid, .servicos-grid, .placas-anuncios-grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem; }
+.placa-card, .servico-card, .placas-anuncio-card { padding: 1.5rem; border: 1px solid rgba(217, 164, 65, .4); border-radius: 14px; background: var(--bege-claro, #FBF7EE); }
+.placa-card h3, .servico-card h3, .placas-anuncio-card h3 { margin: 0 0 .55rem; color: var(--laranja-escuro, #96420A); }
+.placa-eficiencia { display: inline-block; margin-bottom: .8rem; padding: .25rem .6rem; border-radius: 20px; background: #f0dfb9; color: var(--carvao, #1B1712); font-size: .78rem; font-weight: 700; }
+.placa-card p, .servico-card p, .placas-anuncio-card p { font-size: .92rem; line-height: 1.6; }
+.servico-card { display: flex; flex-direction: column; text-decoration: none; color: inherit; transition: transform .2s, box-shadow .2s; }
+.servico-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(27, 23, 18, .1); }
+.servico-icone { margin-bottom: .6rem; font-size: 2rem; }
+.servico-card h3 { color: var(--carvao, #1B1712); }
+.servico-saiba { margin-top: auto; padding-top: 1rem; color: var(--laranja-escuro, #96420A); font-weight: 800; }
+.placas-anuncios { padding-top: 2rem; border-top: 1px solid rgba(27, 23, 18, .14); }
+.placas-anuncios-topo { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+.placas-anuncios-topo h2 { margin: .5rem 0 .2rem; }
+.placas-anuncios-topo p { color: #62584c; }
+.placas-anuncio-card { display: flex; flex-direction: column; }
+.placas-anuncio-tag { align-self: flex-start; margin-bottom: .8rem; padding: .25rem .65rem; border-radius: 20px; background: #f0dfb9; color: var(--laranja-escuro, #96420A); font-size: .75rem; font-weight: 800; }
+.placas-anuncio-card .placas-anuncio-local { margin-bottom: .55rem; color: #62584c; font-size: .85rem; }
+.placas-anuncio-card .placas-anuncio-descricao { margin-bottom: 1rem; }
+.placas-anuncio-empresa { margin-top: auto; padding-top: .8rem; color: #62584c; font-size: .82rem !important; }
+.placas-anuncio-preco { margin-top: .35rem; color: var(--laranja-escuro, #96420A); font-size: 1.15rem; }
+.placas-status { padding: 1.5rem; text-align: center; }
+.placas-erro { color: #a1261c; }
+.placas-vazio { padding: 2.5rem 1.5rem; border: 1px dashed rgba(150, 66, 10, .4); border-radius: 14px; background: var(--bege-claro, #FBF7EE); text-align: center; }
+.placas-vazio > span { font-size: 2rem; }
+.placas-vazio h3 { margin: .6rem 0; color: var(--carvao, #1B1712); }
+.placas-vazio p { margin-bottom: .8rem; }
+.placas-vazio a { color: var(--laranja-escuro, #96420A); font-weight: 700; }
+@media (max-width: 680px) { .placas-container { padding: 2.5rem 1rem; } .placas-anuncios-topo { align-items: flex-start; flex-direction: column; } }
+
+
+.marketplace-imagem-capa {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.marketplace-miniaturas {
+  display: flex;
+  gap: 7px;
+  margin: 0 0 12px;
+  overflow-x: auto;
+}
+.marketplace-miniaturas img {
+  width: 58px;
+  height: 48px;
+  flex: 0 0 auto;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
-.placas-guia,
-.placas-servicos {
-  max-width: 1100px;
-  margin: 0 auto 3rem;
+.placas-anuncio-card {
+  display: flex;
+  flex-direction: column;
 }
 
-.placas-guia h3,
-.placas-servicos h3 {
-  color: var(--carvao, #1B1712);
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.placas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-}
-
-.placa-card {
-  background-color: var(--bege-claro, #FBF7EE);
-  border: 1px solid rgba(217, 164, 65, 0.4);
-  border-radius: 12px;
-  padding: 1.5rem;
-}
-
-.placa-card h4 {
-  margin: 0 0 0.3rem;
-  color: var(--laranja-escuro, #96420A);
-}
-
-.placa-eficiencia {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: bold;
-  color: var(--carvao, #1B1712);
-  background-color: var(--dourado, #D9A441);
-  padding: 0.2rem 0.6rem;
-  border-radius: 12px;
-  margin-bottom: 0.75rem;
-}
-
-.placa-card p {
-  color: var(--texto-escuro, #241F18);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.servicos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.servico-card {
-  background-color: var(--bege-claro, #FBF7EE);
-  border: 1px solid rgba(217, 164, 65, 0.4);
-  border-radius: 12px;
-  padding: 1.75rem 1.5rem;
+.placas-anuncio-card .mkt-btn {
+  display: block;
+  margin-top: auto;
+  padding: 11px;
+  background: var(--laranja, #C1560C);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 700;
   text-align: center;
   text-decoration: none;
-  color: inherit;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  transition: background 0.2s ease;
 }
 
-.servico-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(27, 23, 18, 0.12);
-  border-color: var(--laranja, #C1560C);
-}
-
-.servico-icone {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 0.6rem;
-}
-
-.servico-card h4 {
-  color: var(--carvao, #1B1712);
-  margin: 0 0 0.4rem;
-}
-
-.servico-card p {
-  color: var(--texto-escuro, #241F18);
-  font-size: 0.85rem;
-  line-height: 1.4;
-  margin: 0;
+.placas-anuncio-card .mkt-btn:hover {
+  background: #a44709;
 }
